@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3" type="plugin" group="j2xml" method="upgrade">
+  <name>PLG_J2XML_ATTACHMENTS</name>
+  <author>Helios Ciancio</author>
+  <creationDate>September 2015</creationDate>
+  <copyright>(C) 2015, Helios Ciancio. All rights reserved.</copyright>
+  <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL v3</license>
+  <authorEmail>info@eshiol.it</authorEmail>
+  <authorUrl>www.eshiol.it</authorUrl>
+  <version>3.0.5.77</version>
+  <description>PLG_J2XML_ATTACHMENTS_XML_DESCRIPTION</description>
+  <updateservers>
+    <server type="extension" priority="1" name="J2XML Attachments Updates"><![CDATA[http://www.eshiol.it/updates/plugins/j2xml-attachments-updates?format=xml&dummy=extension.xml]]></server>
+  </updateservers>
+  <files>
+    <filename plugin="attachments">attachments.php</filename>
+    <filename>attachment.php</filename>
+    <filename>index.html</filename>
+  </files>
+  <languages folder="language">
+    <language tag="en-GB">en-GB/en-GB.plg_j2xml_attachments.ini</language>
+    <language tag="en-GB">en-GB/en-GB.plg_j2xml_attachments.sys.ini</language>
+    <language tag="it-IT">it-IT/it-IT.plg_j2xml_attachments.ini</language>
+    <language tag="it-IT">it-IT/it-IT.plg_j2xml_attachments.sys.ini</language>
+  </languages>
+</extension>
