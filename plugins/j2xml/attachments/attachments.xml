@@ -7,7 +7,7 @@
   <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL v3</license>
   <authorEmail>info@eshiol.it</authorEmail>
   <authorUrl>www.eshiol.it</authorUrl>
-  <version>3.0.5.77</version>
+  <version>3.0.6.120</version>
   <description>PLG_J2XML_ATTACHMENTS_XML_DESCRIPTION</description>
   <updateservers>
     <server type="extension" priority="1" name="J2XML Attachments Updates"><![CDATA[http://www.eshiol.it/updates/plugins/j2xml-attachments-updates?format=xml&dummy=extension.xml]]></server>
@@ -23,4 +23,11 @@
     <language tag="it-IT">it-IT/it-IT.plg_j2xml_attachments.ini</language>
     <language tag="it-IT">it-IT/it-IT.plg_j2xml_attachments.sys.ini</language>
   </languages>
+  <config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field name="max_attachment_size" type="text" size="50" default="0" filter="integer" label="PLG_J2XML_ATTACHMENTS_ATTACHMENT_MAX_SIZE" description="PLG_J2XML_ATTACHMENTS_ATTACHMENT_MAX_SIZE_DESCRIPTION"/>
+      </fieldset>
+    </fields>
+  </config>
 </extension>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		3.0.1 plugins/j2xml/attachments/attachments.php
+ * @version		3.0.6 plugins/j2xml/attachments/attachments.php
  * 
  * @package		J2XML
  * @subpackage	plg_j2xml_attachments
@@ -40,38 +40,13 @@ class eshTableAttachment extends eshTable
 	 */
 	function toXML($mapKeysToText = false)
 	{
-		$xml = ''; 
-		
-		// Initialise variables.
-		$xml = array();
-		
-		// Open root node.
-		$xml[] = '<attachment>';
-		
-		$excluded = array('filename_sys'); 
-		$aliases = array(
-			'access'=>'SELECT IF(f.id<=6,f.id,f.title) FROM #__viewlevels f RIGHT JOIN #__attachments a ON f.id = a.access WHERE a.id = '. (int)$this->id,
-			'parent_id'=>'SELECT CONCAT(cc.path,\'/\',c.alias) FROM #__content c LEFT JOIN #__categories cc ON c.catid = cc.id WHERE c.id = '.(int)$this->parent_id,
-			'created_by'=>'SELECT username FROM #__users WHERE id = '.(int)$this->created_by,
-			'modified_by'=>'SELECT username modified_by FROM #__users WHERE id = '.(int)$this->modified_by
-			);
-		
+		$this->_excluded = array_merge($this->_excluded, array('filename_sys'));
+		$this->_aliases['parent_id']='SELECT CONCAT(cc.path,\'/\',c.alias) FROM #__content c LEFT JOIN #__categories cc ON c.catid = cc.id WHERE c.id = '.(int)$this->parent_id;
 		if ($this->uri_type == 'file')
 		{
-			$excluded[] = 'url';
-			$aliases['file'] = 'SELECT \''.base64_encode(file_get_contents($this->filename_sys)).'\' FROM DUAL'; 
-		}
-		
-		$xml[] = parent::_serialize(
-			$excluded, 
-			$aliases,
-			array()
-		); // $excluded,$aliases,$jsons
-
-		// Close root node.
-		$xml[] = '</attachment>';
-						
-		// Return the XML array imploded over new lines.
-		return implode("\n", $xml);
+			$this->_excluded = array_merge($this->_excluded, array('url'));
+			$this->_aliases['file'] = 'SELECT \''.base64_encode(file_get_contents($this->filename_sys)).'\' FROM DUAL';
+		}		
+		return parent::_serialize();
 	}
 }
