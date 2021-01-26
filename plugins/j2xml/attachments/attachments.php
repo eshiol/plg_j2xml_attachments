@@ -1,15 +1,15 @@
 <?php
 /**
- * @package		J2XML
- * @subpackage	plg_j2xml_attachments
+ * @package     Joomla.Plugins
+ * @subpackage  J2xml.Attachments
  * 
- * @version		3.7
- * @since		3.0
+ * @version     __DEPLOY_VERSION__
+ * @since       3.0
  *
- * @author		Helios Ciancio <info@eshiol.it>
- * @link		http://www.eshiol.it
- * @copyright	Copyright (C) 2015 - 2019 Helios Ciancio. All Rights Reserved
- * @license		http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL v3
+ * @author      Helios Ciancio <info (at) eshiol (dot) it>
+ * @link        https://www.eshiol.it
+ * @copyright   Copyright (C) 2015 - 2021 Helios Ciancio. All Rights Reserved
+ * @license     http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL v3
  * J2XML is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
  * is derivative of works licensed under the GNU General Public License 
@@ -19,8 +19,8 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access.');
 
-use eshiol\J2XML\Table\Attachment;
-use eshiol\J2XML\Version;
+use eshiol\J2xml\Table\Attachment;
+use eshiol\J2xml\Version;
 use Joomla\Registry\Registry;
 
 jimport('joomla.plugin.plugin');
@@ -95,11 +95,11 @@ class PlgJ2xmlAttachments extends JPlugin
 	 *
 	 * @access	public
 	 */
-	public function onAfterExport($context, &$xml, $options)
+	public function onJ2xmlAfterExport($context, &$xml, $options)
 	{
-		JLog::add(new JLogEntry(__METHOD__,JLOG::DEBUG,'plg_j2xml_attachments'));
-		JLog::add(new JLogEntry($context,JLOG::DEBUG,'plg_j2xml_attachments'));
-		JLog::add(new JLogEntry(print_r($this->_params, true),JLOG::DEBUG,'plg_j2xml_attachments'));
+		JLog::add(new JLogEntry(__METHOD__, JLOG::DEBUG, 'plg_j2xml_attachments'));
+		JLog::add(new JLogEntry($context, JLOG::DEBUG, 'plg_j2xml_attachments'));
+		JLog::add(new JLogEntry(print_r($this->_params, true), JLOG::DEBUG, 'plg_j2xml_attachments'));
 
 		if (PHP_SAPI == 'cli')
 		{
@@ -110,7 +110,7 @@ class PlgJ2xmlAttachments extends JPlugin
 			JLog::addLogger(array('logger' => $options->get('logger', 'messagequeue'), 'extension' => 'plg_j2xml_attachments'), JLOG::ALL & ~JLOG::DEBUG, array('plg_j2xml_attachments'));
 		}
 
-		if (version_compare(Version::getFullVersion(), '19.4.330') == -1)
+		if (version_compare(Version::getFullVersion(), '20.7.350') == -1)
 		{
 			JLog::add(new JLogEntry(JText::_('PLG_J2XML_ATTACHMENTS').' '.JText::_('PLG_J2XML_ATTACHMENTS_MSG_REQUIREMENTS_LIB'), JLOG::WARNING, 'plg_j2xml_attachments'));
 			return false;
@@ -163,7 +163,7 @@ class PlgJ2xmlAttachments extends JPlugin
 	 *
 	 * @access	public
 	 */
-	public function onAfterImport($context, &$xml, $options)
+	public function onJ2xmlAfterImport($context, &$xml, $options)
 	{
 		JLog::add(new JLogEntry(__METHOD__, JLOG::DEBUG, 'plg_j2xml_attachments'));
 		JLog::add(new JLogEntry($context, JLOG::DEBUG, 'plg_j2xml_attachments'));
@@ -178,7 +178,7 @@ class PlgJ2xmlAttachments extends JPlugin
 			JLog::addLogger(array('logger' => $options->get('logger', 'messagequeue'), 'extension' => 'plg_j2xml_attachments'), JLOG::ALL & ~JLOG::DEBUG, array('plg_j2xml_attachments'));
 		}
 
-		if (version_compare(Version::getFullVersion(), '19.4.330') == -1)
+		if (version_compare(Version::getFullVersion(), '20.7.350') == -1)
 		{
 			JLog::add(new JLogEntry(JText::_('PLG_J2XML_ATTACHMENTS').' '.JText::_('PLG_J2XML_ATTACHMENTS_MSG_REQUIREMENTS_LIB'), JLOG::WARNING, 'plg_j2xml_attachments'));
 			return false;
